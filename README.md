@@ -7,3 +7,6 @@ step0, download dataset from [link1](https://download.csdn.net/download/guotong1
 step1, run data/preprocess.py
 
 step2, run train.py
+
+# More Info
+https://paperswithcode.com/sota/click-through-rate-prediction-on-criteo
