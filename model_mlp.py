@@ -16,7 +16,7 @@ class RecModel(object):
                  max_ids,
                  is_training):
 
-        self.batch_size = 1024
+        self.batch_size = 2048
         self.global_step = tf.Variable(0, name="global_step", trainable=False, dtype=tf.int64)
 
         self.input_label = tf.placeholder(shape=[None], dtype=tf.float32)
