@@ -86,6 +86,8 @@ class RecModel(object):
                     epoch_no_improve = 0
                     best_auc = avg_auc
                     step = tf.train.global_step(sess, self.global_step)
+                    
+                    # 保存可能会导致内存溢出
                     path = saver.save(sess, checkpoint_prefix, global_step=step)
                     print("Saved model checkpoint to {}\n".format(path))
                 else:
