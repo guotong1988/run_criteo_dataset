@@ -82,13 +82,13 @@ import tensorflow as tf
 
 with tf.variable_scope("", reuse=tf.AUTO_REUSE):
     model_train = RecModel(
-        feature_names_list=all_feature_names,
-        max_id_list=max_id_list,
+        feature_name_list=all_feature_names,
+        max_ids=max_id_list,
         is_training=True)
 with tf.variable_scope("", reuse=True):
     model_dev = RecModel(
-        feature_names_list=all_feature_names,
-        max_id_list=max_id_list,
+        feature_name_list=all_feature_names,
+        max_ids=max_id_list,
         is_training=False)
 
 model_train.train(data_train, data_dev, model_dev)
