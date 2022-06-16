@@ -18,14 +18,14 @@ for row_index, line in enumerate(f):
     tmp_line = []
     tmp_line.append(int(splits[0]))
     for column_index, one_value in enumerate(splits):
-        if False and column_index >= 1 and column_index <= 13:
+        if column_index >= 1 and column_index <= 13:
             tmp_value = one_value
             if tmp_value == "":
                 tmp_value = 0
             else:
-                tmp_value = int(tmp_value)
+                tmp_value = int(tmp_value) + 1
             if tmp_value >= 1:
-                tmp_value = int(math.log(tmp_value+1, 1.1))
+                tmp_value = int(math.log2(tmp_value)*2)
             elif tmp_value < 1:
                 tmp_value = 0
             tmp_line.append(tmp_value)
@@ -38,9 +38,9 @@ for row_index, line in enumerate(f):
             if one_value == "":
                 one_value = 0
             else:
-                one_value = int(one_value)
+                one_value = int(one_value) + 1
             if one_value >= 1:
-                one_value = int(math.log2(one_value+1))
+                one_value = int(math.log2(one_value))
             elif one_value < 1:
                 one_value = 0
             tmp_line.append(one_value)
@@ -48,7 +48,7 @@ for row_index, line in enumerate(f):
                 column_index_to_max_id[column_index] = 0
             if one_value > column_index_to_max_id[column_index]:
                 column_index_to_max_id[column_index] = one_value
-
+    # for column_index, one_value in enumerate(splits):
         if column_index >= 14:
             if column_index not in column_index_to_values:
                 column_index_to_values[column_index] = {}
@@ -71,7 +71,7 @@ for row_index, line in enumerate(f):
         data_dev.append(tmp_line)
     else:
         data_train.append(tmp_line)
-all_feature_names = ['I' + str(i) for i in range(1, 14)] + ['II' + str(i) for i in range(1, 27)]
+all_feature_names = ['I' + str(i) for i in range(1, 27)] + ['II' + str(i) for i in range(1, 27)]
 
 max_id_list = []
 for column_index in column_index_to_max_id:
@@ -82,13 +82,13 @@ import tensorflow as tf
 
 with tf.variable_scope("", reuse=tf.AUTO_REUSE):
     model_train = RecModel(
-        feature_name_list=all_feature_names,
-        max_ids=max_id_list,
+        feature_names_list=all_feature_names,
+        max_id_list=max_id_list,
         is_training=True)
 with tf.variable_scope("", reuse=True):
     model_dev = RecModel(
-        feature_name_list=all_feature_names,
-        max_ids=max_id_list,
+        feature_names_list=all_feature_names,
+        max_id_list=max_id_list,
         is_training=False)
 
 model_train.train(data_train, data_dev, model_dev)
