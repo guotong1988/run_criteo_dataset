@@ -33,7 +33,7 @@ class RecModel(object):
             feature_list.extend(embed_feature)
 
         with tf.variable_scope('MLP', reuse=tf.AUTO_REUSE):
-            last_layer = ensemble_layer(feature_list)
+            last_layer = ensemble_layer(feature_list, is_training)
 
         self.logits = tf.layers.dense(inputs=last_layer,
                                       units=1,
