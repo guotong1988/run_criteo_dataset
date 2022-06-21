@@ -27,8 +27,11 @@ def prelu(_x, scope=''):
         return tf.maximum(0.0, _x) + _alpha * tf.minimum(0.0, _x)
 
 
-def ensemble_layer(feature_list):
+def ensemble_layer(feature_list, is_train):
     features = tf.concat(feature_list, 1)  # [batch_size, feature_num * hidden_size]
+    
+    features = tf.layers.dropout(features, 0.5, training=is_train)
+    
     mid_layer = tf.layers.dense(inputs=features,
                                 units=256,
                                 kernel_initializer=kernel_initializer,
