@@ -30,7 +30,7 @@ def prelu(_x, scope=''):
 def ensemble_layer(feature_list, is_train):
     features = tf.concat(feature_list, 1)  # [batch_size, feature_num * hidden_size]
     
-    features = tf.layers.dropout(features, 0.5, training=is_train)
+    features = tf.layers.dropout(features, 0.1, training=is_train)
     
     mid_layer = tf.layers.dense(inputs=features,
                                 units=256,
