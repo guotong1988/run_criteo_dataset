@@ -16,7 +16,7 @@ class RecModel(object):
                  max_ids,
                  is_training):
 
-        self.batch_size = 2048
+        self.batch_size = 1024
         self.global_step = tf.Variable(0, name="global_step", trainable=False, dtype=tf.int64)
 
         self.input_label = tf.placeholder(shape=[None], dtype=tf.float32)
@@ -44,7 +44,7 @@ class RecModel(object):
 
         self.score = tf.sigmoid(self.logits)
         if not is_training: return
-        self.train_op = tf.train.AdamOptimizer(0.00005).minimize(self.loss, global_step=self.global_step)
+        self.train_op = tf.train.AdamOptimizer(0.001).minimize(self.loss, global_step=self.global_step)
 
 
     def build_feat(self, batch):
