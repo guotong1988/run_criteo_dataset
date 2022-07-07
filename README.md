@@ -1,5 +1,5 @@
 # Run Criteo Dataset
-Get AUC 0.808 at Criteo dataset by MLP
+Get AUC 0.809 at Criteo dataset by MLP
 
 # Reproduce
 step0, download dataset from [link1](https://download.csdn.net/download/guotong1988/85042767) [link2](https://download.csdn.net/download/guotong1988/85042833) [link3](https://download.csdn.net/download/guotong1988/85042834) (the total file is about 11G)
