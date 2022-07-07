@@ -18,6 +18,8 @@ for row_index, line in enumerate(f):
     tmp_line = []
     tmp_line.append(int(splits[0]))
     for column_index, one_value in enumerate(splits):
+
+
         if column_index >= 1 and column_index <= 13:
             tmp_value = one_value
             if tmp_value == "":
@@ -25,7 +27,7 @@ for row_index, line in enumerate(f):
             else:
                 tmp_value = int(tmp_value) + 1
             if tmp_value >= 1:
-                tmp_value = int(math.log2(tmp_value)*2)
+                tmp_value = int(math.log2(tmp_value)*2)+1
             elif tmp_value < 1:
                 tmp_value = 0
             tmp_line.append(tmp_value)
@@ -40,7 +42,7 @@ for row_index, line in enumerate(f):
             else:
                 one_value = int(one_value) + 1
             if one_value >= 1:
-                one_value = int(math.log2(one_value))
+                one_value = int(math.log2(one_value)) + 1
             elif one_value < 1:
                 one_value = 0
             tmp_line.append(one_value)
